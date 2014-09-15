@@ -11,9 +11,7 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 <%
-	if(true) {
-		
-	}
+	
 %>
 </body>
 </html>

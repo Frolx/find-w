@@ -35,12 +35,13 @@ public class Util {
 		Elements links = doc.select("a[href]");
 		
 		for (Element link : links) {
-			
-			System.out.println("#### - > " +link.attr("abs:href"));
-			
-			
-			
+
 		}
+		
+	}
+	
+	
+	public static void backTrack() {
 		
 	}
 }
