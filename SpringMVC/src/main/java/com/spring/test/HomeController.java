@@ -1,18 +1,20 @@
 package com.spring.test;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.spring.service.PersonService;
 import com.spring.test.frlx.Person;
 
 /**
@@ -20,6 +22,14 @@ import com.spring.test.frlx.Person;
  */
 @Controller
 public class HomeController {
+	private PersonService personService;
+    
+    @Autowired(required=true)
+    @Qualifier(value="personService")
+    public void setPersonService(PersonService ps){
+        this.personService = ps;
+    }
+	
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -30,6 +40,11 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) throws IOException {
 		logger.info("Welcome home! The client locale is {}.", locale);
+		Person p = new Person();
+		
+		p.setName("Dima");
+		p.setCountry("USA");
+		this.personService.addPerson(p);
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);

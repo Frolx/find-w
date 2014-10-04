@@ -1,9 +1,33 @@
 package com.spring.test.frlx;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="PERSON")
 public class Person {
-	public int id = 0;
 	
-	public String name = "nick";
+	@Id
+	@Column
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	
+	private String name;
+	
+	private String country;
+	
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
 
 	public int getId() {
 		return id;
