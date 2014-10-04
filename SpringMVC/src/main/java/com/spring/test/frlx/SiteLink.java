@@ -14,6 +14,7 @@ public class SiteLink <T>{
 	}
 	
 	public SiteLink(T data) {
+		this();
 		this.link = data;
 	}
 	

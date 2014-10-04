@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.service.PersonService;
 import com.spring.test.frlx.Person;
+import com.spring.test.frlx.SiteLink;
 
 /**
  * Handles requests for the application home page.
@@ -23,6 +24,8 @@ import com.spring.test.frlx.Person;
 @Controller
 public class HomeController {
 	private PersonService personService;
+	
+	private SiteLink<String> tree;
     
     @Autowired(required=true)
     @Qualifier(value="personService")
@@ -44,8 +47,8 @@ public class HomeController {
 		
 		p.setName("Dima");
 		p.setCountry("USA");
-		this.personService.addPerson(p);
 		
+		this.personService.addPerson(p);
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
@@ -54,8 +57,11 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		//System.out.println(Util.downloadPage("http://google.com"));
 		
-		Util.downloadPage("http://google.com");
-		Util.parseLink("http://google.com");
+//		Util.downloadPage("http://google.com");
+		tree = new SiteLink<String>("http://data.black3dsnake.com");
+		Util.parseLink(tree, 0);
+		
+		
 		
 		return "home";
 	}
