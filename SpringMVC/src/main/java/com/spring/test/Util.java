@@ -6,8 +6,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 
-
-
+import org.apache.commons.validator.routines.UrlValidator;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -44,17 +43,23 @@ public class Util {
 		}
 		return siteLink;
 	}
-	
+
+	static String baseLink = "";
 	public static void parseLink(SiteLink<String> siteLink, int level) throws IOException {
-		if(level <= 1) {
+		if(level <= 0) {
 			String linkString = siteLink.getLink();
 			if(!linkString.contains("http://") && !linkString.contains("https://")) {
 				if(linkString.startsWith("/")) {
-					linkString = "http://data.black3dsnake.com" + linkString;					
+					linkString = baseLink + linkString;
 				} else {
-					linkString = "http://data.black3dsnake.com/" + linkString;
+					linkString = baseLink + linkString;
 				}
 			}
+
+			if(!isAnValidUrl(linkString)) {
+				return;
+			}
+
 			Document doc = Jsoup.connect(linkString).get();
 			Elements links = doc.select("a[href]");
 			
@@ -67,9 +72,10 @@ public class Util {
 			}
 		}
 	}
-	
-	
-	public static void backTrack() {
-		
+
+	private static boolean isAnValidUrl(String baseUrl) {
+		UrlValidator defaultValidator = new UrlValidator();
+		StringBuffer a = new StringBuffer(baseUrl);
+		return defaultValidator.isValid(a.toString());
 	}
 }

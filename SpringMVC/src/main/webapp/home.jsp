@@ -15,7 +15,7 @@
 	});
 </script>
 
-<P>  The time on the server is ${pName}. </P>
+<P>  The time on the server is ${serverTime}. </P>
 <%
 	
 %>

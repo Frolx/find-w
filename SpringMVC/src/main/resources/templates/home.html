@@ -1,0 +1,40 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" %>
+<html>
+<head>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>Home</title>
+</head>
+<body>
+<h1>
+	Hello world!  
+</h1>
+
+<!-- The form -->
+
+	<input id="search-box" type="text" placeholder="Search.." name="search">
+	<button class="fa search-btn">Search The Shiet!</button>
+
+
+<textarea id="result" rows="4" cols="50">
+	TextArea
+</textarea>
+<script>
+	$(document).ready(function() {
+		$( ".search-btn" ).click(function() {
+		alert(1)
+		  var sValue = $("#search-box").val()
+		$.post( "http://localhost:8080/search", { name: sValue })
+		  .done(function( data ) {
+			$("#result").text(data);
+		  });
+		});
+
+	});
+</script>
+
+<P>  The time on the server is ${serverTime}. </P>
+
+</body>
+</html>
