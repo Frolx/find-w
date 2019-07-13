@@ -1,8 +1,16 @@
 package com.mizuho.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Vendor {
+    private String name;
+    private List<Price> vendorPrices;
+
+    public Vendor(String name) {
+        this.name = name;
+        this.vendorPrices = new ArrayList<>();
+    }
     public String getName() {
         return name;
     }
@@ -11,15 +19,13 @@ public class Vendor {
         this.name = name;
     }
 
-    public List<TradeInstrument> getTradeInstruments() {
-        return tradeInstruments;
+
+    public List<Price> getVendorPrices() {
+        return vendorPrices;
     }
 
-    public void setTradeInstruments(List<TradeInstrument> tradeInstruments) {
-        this.tradeInstruments = tradeInstruments;
+    public void setVendorPrices(List<Price> vendorPrices) {
+        this.vendorPrices = vendorPrices;
     }
-
-    String name;
-    List<TradeInstrument> tradeInstruments;
 
 }
