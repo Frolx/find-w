@@ -4,7 +4,9 @@ import com.mizuho.dao.PriceDAO;
 import com.mizuho.dao.TradeInstrumentDao;
 import com.mizuho.dao.VendorDAO;
 import com.mizuho.model.Price;
+import com.mizuho.model.TradeInstrument;
 import com.mizuho.model.Vendor;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,12 +27,14 @@ public class TradeService {
         this.vendorDAO = vendorDAO;
     }
 
-    public List<Vendor> getVendorIntrumentsPrice(String vendorName) {
-        return null;
+    public List<Price> getVendorIntrumentsPrice(String vendorName) {
+
+        return vendorDAO.getAllVendorsTradeInstrumentPrices(vendorDAO.getVendor(vendorName));
     }
 
     public List<Price> getInstrumentPrices(String instrumentName) {
-        return null;
+        return priceDAO.getAllPricesForTradeInstrument(instrumentName);
+
     }
 
     public void addVendor(String vendorName) {
@@ -38,8 +42,9 @@ public class TradeService {
         vendorDAO.addVendor(new Vendor(vendorName));
     }
 
-    public void addPricedInstrumentToVendor(String vendorName, String tradeInstrumentName, float price){
+    public void addPricedInstrumentToVendor(Vendor vendorName, TradeInstrument tradeInstrument, float price){
 
+        priceDAO.addPrice(new Price(vendorName, tradeInstrument, new DateTime(), price));
     }
 
 }

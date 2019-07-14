@@ -2,11 +2,21 @@ package com.mizuho.model;
 
 import org.joda.time.DateTime;
 
-public class Price {
+import java.io.Serializable;
+
+public class Price implements Serializable {
     private Vendor vendor;
     private TradeInstrument tradeInstrument;
     private DateTime publishedDate;
     private float price;
+
+    public Price(Vendor vendor, TradeInstrument tradeInstrument, DateTime publishedDate, float price) {
+        this.vendor = vendor;
+        this.tradeInstrument = tradeInstrument;
+        this.publishedDate = publishedDate;
+        this.price = price;
+    }
+
 
     public Vendor getVendor() {
         return vendor;

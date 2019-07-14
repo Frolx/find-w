@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface VendorDAO {
 
-    List<Price> getAllVendorsTradeInstrumentPrices(String vendor);
+    List<Price> getAllVendorsTradeInstrumentPrices(Vendor vendor);
 
     void addVendor(Vendor vendorName);
 

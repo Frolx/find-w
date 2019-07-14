@@ -28,8 +28,8 @@ public class VendorDaoImp implements VendorDAO {
     }
 
     @Override
-    public List<Price> getAllVendorsTradeInstrumentPrices(String vendor) {
-        return cache.getVendorPrices(cache.get(vendor));
+    public List<Price> getAllVendorsTradeInstrumentPrices(Vendor vendor) {
+        return cache.getVendorPrices(vendor);
     }
 
 

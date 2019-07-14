@@ -7,11 +7,9 @@ import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Component
@@ -66,6 +64,8 @@ public class Cache {
         return null;
     }
 
+
+
     public List<Price> getVendorPrices(Vendor vendor) {
         if(cache.containsKey(vendor)) {
             return cache.get(vendor);
@@ -76,6 +76,10 @@ public class Cache {
 
     public Map<Vendor, List<Price>> getAll() {
         return cache;
+    }
+
+    public List<Price> getAllPrices(String tradeInstrumentName) {
+        return cache.values().stream().flatMap(Collection::stream).filter(x -> x.getTradeInstrument().getName().equals(tradeInstrumentName)).collect(Collectors.toList());
     }
 
     private boolean isTradeExpired(DateTime instrumentDateTime) {

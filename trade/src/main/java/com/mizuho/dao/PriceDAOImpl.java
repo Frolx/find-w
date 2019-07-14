@@ -14,16 +14,16 @@ public class PriceDAOImpl implements PriceDAO {
 
     @Override
     public void addPrice(Price price) {
-        cache.getAll();
+        cache.add(price);
     }
 
     @Override
     public Price getPrice(String tradeInstrumentName) {
-        return null;
+       return null;// cache.get();
     }
 
     @Override
     public List<Price> getAllPricesForTradeInstrument(String tradeInstrumentName) {
-        return null;
+        return cache.getAllPrices(tradeInstrumentName);
     }
 }
