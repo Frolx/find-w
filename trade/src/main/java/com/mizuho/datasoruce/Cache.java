@@ -1,7 +1,6 @@
 package com.mizuho.datasoruce;
 
 import com.mizuho.model.Price;
-import com.mizuho.model.TradeInstrument;
 import com.mizuho.model.Vendor;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
@@ -13,7 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Component
-public class Cache {
+public class Cache implements DataSource {
     private final Map<Vendor, List<Price>> cache = new ConcurrentHashMap<>();
     private final int EXPIRITY_CHECK_PERIOD_SEC = 10;
     public Cache() {
@@ -63,6 +62,8 @@ public class Cache {
         System.out.println("Vendor doesn't exists");
         return null;
     }
+
+
 
 
 

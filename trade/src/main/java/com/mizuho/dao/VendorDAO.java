@@ -9,7 +9,7 @@ public interface VendorDAO {
 
     List<Price> getAllVendorsTradeInstrumentPrices(Vendor vendor);
 
-    void addVendor(Vendor vendorName);
+    void saveVendor(Vendor vendorName);
 
     Vendor getVendor(String vendorName);
 }

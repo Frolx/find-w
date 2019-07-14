@@ -18,7 +18,7 @@ public class VendorDaoImp implements VendorDAO {
     }
 
     @Override
-    public void addVendor(Vendor vendor) {
+    public void saveVendor(Vendor vendor) {
         cache.add(vendor);
     }
 

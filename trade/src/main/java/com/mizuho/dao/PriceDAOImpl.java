@@ -18,11 +18,6 @@ public class PriceDAOImpl implements PriceDAO {
     }
 
     @Override
-    public Price getPrice(String tradeInstrumentName) {
-       return null;// cache.get();
-    }
-
-    @Override
     public List<Price> getAllPricesForTradeInstrument(String tradeInstrumentName) {
         return cache.getAllPrices(tradeInstrumentName);
     }

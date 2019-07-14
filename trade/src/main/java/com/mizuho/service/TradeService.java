@@ -10,7 +10,6 @@ import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.xml.transform.OutputKeys;
 import java.util.List;
 
 @Component
@@ -34,16 +33,17 @@ public class TradeService {
 
     public List<Price> getInstrumentPrices(String instrumentName) {
         return priceDAO.getAllPricesForTradeInstrument(instrumentName);
-
     }
 
     public void addVendor(String vendorName) {
+        vendorDAO.saveVendor(new Vendor(vendorName));
+    }
 
-        vendorDAO.addVendor(new Vendor(vendorName));
+    public Vendor getVendor(String vendorName) {
+        return vendorDAO.getVendor(vendorName);
     }
 
     public void addPricedInstrumentToVendor(Vendor vendorName, TradeInstrument tradeInstrument, float price){
-
         priceDAO.addPrice(new Price(vendorName, tradeInstrument, new DateTime(), price));
     }
 
