@@ -50,4 +50,26 @@ public class Price implements Serializable {
         this.price = price;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Price)) return false;
+
+        Price price1 = (Price) o;
+
+        if (Float.compare(price1.price, price) != 0) return false;
+        if (vendor != null ? !vendor.equals(price1.vendor) : price1.vendor != null) return false;
+        if (tradeInstrument != null ? !tradeInstrument.equals(price1.tradeInstrument) : price1.tradeInstrument != null)
+            return false;
+        return publishedDate != null ? publishedDate.equals(price1.publishedDate) : price1.publishedDate == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = vendor != null ? vendor.hashCode() : 0;
+        result = 31 * result + (tradeInstrument != null ? tradeInstrument.hashCode() : 0);
+        result = 31 * result + (publishedDate != null ? publishedDate.hashCode() : 0);
+        result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
+        return result;
+    }
 }
